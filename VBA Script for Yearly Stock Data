@@ -1,0 +1,39 @@
+Sub yearly_volume():
+
+Range("I1").Value = "Ticker"
+Range("J1").Value = "Total Stock Volume"
+
+Dim ticker As String
+Dim totalstockvolume As Double
+Dim volumesummary As Integer
+
+
+
+totalstockvolume = 0
+volumesummary = 2
+
+lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+For i = 2 To lastrow
+
+    
+
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    ticker = Cells(i, 1).Value
+    totalstockvolume = totalstockvolume + Cells(i, 7).Value + Cells(i + 1, 7).Value
+    Range("I" & volumesummary).Value = ticker
+    Range("J" & volumesummary).Value = totalstockvolume
+    volumesummary = volumesummary + 1
+    totalstockvolume = 0
+    
+    Else
+    totalstockvolume = totalstockvolume + Cells(i, 7).Value
+    
+    End If
+    
+    Next i
+
+
+
+End Sub
+
